@@ -1,0 +1,11 @@
+*.json
+*.txt
+*.csv
+
+*.swp
+*.swo
+
+*.pyc
+*.png
+
+.idea
