@@ -1,0 +1,99 @@
+model: pdm
+hyperparameters:
+  add_multipie:
+    - False
+    #- True
+  is_49lm:
+    #- True
+    - False
+  layers:
+    - [1]
+    - [2]
+    - [4]
+    - [8]
+    - [16]
+    - [32]
+    - [48]
+    - [64]
+    - [80]
+    - [96]
+    - [104]
+    - [112]
+    - [120]
+    - [128]
+    - [132]
+    - [136]
+    - [140]
+    - [144]
+    - [160]
+    - [176]
+    - [192]
+    - [224]
+    - [256]
+    - [384]
+    - [512]
+  activation:
+    - relu
+    #- sigmoid
+    #- tanh
+  last_linear:
+    - True
+    #- False
+  epochs_train:
+    #- 500
+    - 1000
+    #- 2000
+    #- 3000
+    #- 5000
+  shuffle:
+    - True
+    #- False
+  epochs_test:
+    #- 250
+    - 500
+    #- 1000
+    #- 2000
+  multiplicative_confidence:
+    - False
+  lr_net:
+    - 0.001
+  lr_shape:
+    - 0.01
+  net_scheduler: # step_size, factor
+    -  # None
+  conf_params: # [a,b]
+    #- [0.1, 0.1]
+    - [1, 0.1]
+    #- [1, 0.2]
+    #- [1, 0.5]
+    #- [2, 0.1]
+    #- [1, 1.0]
+  loss: # width, curvature
+    #- ["l1"]
+    #- ["mse"]
+    #- ["wing", 5, 0.5]
+    - ["wing", 10, 1.0]
+    #- ["wing",1.0, 0.1]
+    #- ["wing",10, 2.0]
+    #- ["wing",0.25, 0.0025]
+    #- ["wing",0.1, 0.001]
+  noise_std:
+    - -1.0 # no noise
+    #- 0.000001
+    #- 0.0000001
+    #- 0.00000001
+  shape_init:
+    - ["uniform", 0.1]  # works best
+    #- ["gaussian", 0.1]
+    #- ["uniform", 0.01]
+    #- ["uniform", 1.0]
+    #- ["gaussian", 1.0]
+  bs:
+    #- 16
+    #- 32
+    - 64
+    #- 128   #worst
+  random_seed:
+    - 0
+    #- 1
+    #- 15213

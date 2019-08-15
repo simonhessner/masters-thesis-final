@@ -1,0 +1,54 @@
+model: gapsearch
+hyperparameters:
+  hg:
+    - ~/projects/models/best_hgs_thesis/best_e68.torch  # 68
+    - ~/projects/models/best_hgs_thesis/best_h68.torch  # 68
+    - ~/projects/models/best_hgs_thesis/best_e.torch    # 68
+    - ~/projects/models/best_hgs_thesis/best_h.torch    # 68
+    - ~/projects/models/best_hgs_thesis/best_68.torch   # 68
+    - ~/projects/models/best_hgs_thesis/best_all.torch  # 68
+  pdm:
+    - ~/results/thesis/pdm/multilayer_old_data_incl49lm/models/24_best_h49.torch       # 68   # 2
+    - ~/results/thesis/pdm/multilayer_old_data_incl49lm/models/24_best_h68.torch       # 68   # 2
+    - ~/results/thesis/pdm/multilayer_old_data_incl49lm/models/24_best_all.torch       # 68   # 2
+    - ~/results/thesis/pdm/multilayer/models/5_best_h49.torch                          # 68   # 2
+    - ~/results/thesis/pdm/multilayer/models/5_best_h68.torch                          # 68   # 2
+    #- ~/results/thesis/pdm/multilayer4/models/35_best_h68.torch                        # 68
+    #- ~/results/thesis/pdm/multilayer4/models/13_best_h49.torch                        # 68
+  epochs:
+    - 5
+    - 10
+    #- 25
+    #- 50
+    #- 100
+    #- 250
+    - 500
+    - 1000
+  optimizer:
+    #- {name : adam, lr : 0.01}
+    - {name : adam, lr : 0.025}
+    #- {name : adam, lr : 0.1}
+  scheduler:
+    #- # None
+    - {name: plateau, patience: 10, factor: 0.5}         # 3
+    - {name: plateau, patience: 10, factor: 0.25}  #yes  # 3
+    - {name: plateau, patience: 5, factor: 0.75}         # 3
+    #- {name: plateau, patience: 5, factor: 0.9}          # 2
+    #- {name: plateau, patience: 25, factor: 0.1}   # yes # 1
+  variance_threshold:
+    - # None  # YES
+    - 2.0     # YES
+    - 3.0
+  conf_params:
+    #- # None => use PDM preset
+    - [1, 0.1]     # 3
+    #- [1, 1]       # 2
+    - [0.1, 0.1]   # 3
+  encoder:
+    - True
+    - False
+  test_reduction:
+    - "sum"
+    #- "mean" # Is numerically less stable but could sometimes give better results
+  random_seed:
+    - 0

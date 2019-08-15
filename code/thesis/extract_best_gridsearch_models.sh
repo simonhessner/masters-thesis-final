@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'e49'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY e49,(e49+h49+e68+h68)" | head -n 2
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'e68'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY e68,(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'h49'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY h49,(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'h68'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY h68,(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'e'    AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY (e49+e68),(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT 'h'    AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY (h49+h68),(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT '_49'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY (e49+h49),(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT '_68'  AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY (e68+h68),(e49+h49+e68+h68)" | head -n 2 | tail -n 1
+cat */results*.csv | sort -u | csvsql -y0 --query "SELECT '_all' AS category,*,ROUND(pdm_easy49,2) e49,ROUND(pdm_easy68,2) e68,ROUND(pdm_hard49,2) h49,ROUND(pdm_hard68,2) h68 FROM stdin ORDER BY (e49+h49+e68+h68)" | head -n 2 | tail -n 1

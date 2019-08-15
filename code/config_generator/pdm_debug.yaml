@@ -1,0 +1,38 @@
+model: pdm
+hyperparameters:
+  is_49lm:
+    - False
+  layers:
+    - [128]
+  activation:
+    - relu
+  last_linear:
+    - True
+  epochs_train:
+    - 100
+  shuffle:
+    - True
+  epochs_test:
+    - 250
+  multiplicative_confidence:
+    - False
+  lr_net:
+    - 0.001
+  lr_shape:
+    - 0.01
+  net_scheduler: # step_size, factor
+    -  # None
+  conf_params: # [a,b]
+    - [0.1, 0.1]
+    - [1, 0.1]
+  loss:
+    - ["wing", 5, 0.5] # width, curvature
+    - ["wing",10, 1.0]
+  noise_std:
+    - -1.0 # no noise
+  shape_init:
+    - ["uniform", 0.1]
+  bs:
+    - 64
+  random_seed:
+    - 0

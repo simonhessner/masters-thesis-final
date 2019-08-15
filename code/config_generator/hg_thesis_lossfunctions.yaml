@@ -1,0 +1,59 @@
+# This is an example template file that will be used to generate config files for the hyperparameter grid search.
+# Every combination of parameters in the hyperparameters section will be created as a new config.
+model: hourglass
+hyperparameters:
+  n_lm:
+    - 68
+    - 49
+  n_hgs:
+    - 3
+    - 4
+  n_res_modules:
+    - 3
+  n_features:
+    - 256
+    - 512
+  hg_depth:
+    - 2
+    - 4
+  regression:
+    #- "tanh"
+    #- "linear"
+    - "dsnt"
+  do_1x1_before_dsnt:
+    #- True
+    - False
+  heatmap_sigma:
+    #- -1.0  # No heatmap loss
+    #- 0.5
+    - 1.0
+    #- 2
+  augment_rotation:
+    - 0
+    #- 30
+    #- 60
+  normalize_loss:
+    - True
+    - False
+  intermediate_loss:
+    - False
+  loss_function:
+    - "mse"
+    - "l1"
+    #- "l1_and_mse"
+    - "wing_5"
+    - "wing_10"
+  predict_distances_weight:
+    - -1
+  n_epoch:
+    - 200
+  batch_size:
+    - 32
+  lr_scheduler_patience:
+    - 15
+  lr_decay_factor:
+    - 0.5
+  lr: # learning rate
+    - 0.001
+  random_seed:
+    - 0

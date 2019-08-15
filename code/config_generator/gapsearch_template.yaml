@@ -1,0 +1,51 @@
+model: gapsearch
+hyperparameters:
+  hg:
+    - ~/projects/results/hg_49lm/models/743_best_hard_noutline.torch    # hard 49: 3.878483295440674  (SOTA 3.89)
+    - ~/projects/results/hg_49lm/models/890_best_hard_noutline.torch    # hard 49: 3.8782949447631836 (SOTA 3.89)
+    - ~/projects/results/hg_49lm/models/818_best_hard_noutline.torch    # hard 49: 3.8755338191986084 (SOTA 3.89)
+    - ~/projects/results/hg_49lm/models/1017_best_hard_noutline.torch   # hard 49: 3.8746602535247803 (SOTA 3.89)
+    - ~/projects/results/hg_49lm/models/935_best_easy_noutline.torch    # easy 49: 2.207968235015869  (SOTA 2.21)
+    - ~/projects/results/hg_49lm/models/755_best_easy_noutline.torch    # easy 49: 2.203516721725464  (SOTA 2.21)
+    - ~/projects/results/hg_49lm/models/790_best_easy_noutline.torch    # easy 49: 2.201089382171631  (SOTA 2.21)
+    - ~/projects/results/hg_49lm/models/714_best_easy_noutline.torch    # easy 49: 2.2004246711730957 (SOTA 2.21)
+  pdm:
+    - ~/projects/results/pdm_per_category/models/91_best_hard_49.torch  # hard 49: 3.4394547939300537
+    - ~/projects/results/pdm_per_category/models/66_best_hard_49.torch  # hard 49: 3.4574408531188965
+    - ~/projects/results/pdm_per_category/models/52_best_hard_49.torch  # hard 49: 3.4757208824157715
+    - ~/projects/results/pdm_per_category/models/90_best_hard_49.torch  # hard 49: 3.476255416870117
+    - ~/projects/results/pdm_per_category/models/65_best_easy_49.torch  # easy 49: 2.0176947116851807
+    - ~/projects/results/pdm_per_category/models/62_best_easy_49.torch  # easy 49: 2.0195107460021973
+    - ~/projects/results/pdm_per_category/models/182_best_easy_49.torch # easy 49: 2.019596576690674
+    - ~/projects/results/pdm_per_category/models/55_best_easy_49.torch  # easy 49: 2.019735097885132
+  epochs:
+    - 1000
+    - 100
+    - 50
+  optimizer:
+    - {name : adam, lr : 0.025}
+    - {name : adam, lr : 0.01}
+  scheduler:
+    - # None                                                       # YES
+    - {name: plateau, patience: 50, factor: 0.5, threshold: 0.001} # YES
+    - {name: plateau, patience: 10, factor: 0.5}                   # YES
+    - {name: plateau, patience: 10, factor: 0.25}                  # YES
+    - {name: plateau, patience: 50, factor: 0.9, threshold: 0.001} # YES
+  variance_threshold:
+    - # None  # YES
+    - 0.5     # YES
+    - 1.0     # YES
+    - 2.0     # YES
+    - 2.5     # YES
+    - 3.5     # YES
+  conf_params:
+    - # None => use PDM preset
+    - [1, 0.1]
+  encoder:
+    - True
+    - False
+  test_reduction:
+    - "sum"
+    #- "mean" # Is numerically less stable but could sometimes give better results
+  random_seed:
+    - 0

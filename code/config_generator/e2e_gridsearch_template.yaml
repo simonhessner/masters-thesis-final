@@ -1,0 +1,44 @@
+model: end2end
+hyperparameters:
+  initial_hg:
+    #- /media/bighdd5/simon/projects/results/hg_rot_augm_no_stn/0/models/2_best_model.torch
+    - /media/bighdd5/simon/projects/models/hg_alpha/alpha_hg.torch
+  initial_pdm:
+    - /media/bighdd5/simon/projects/results/pdm_losscomparison/0/models/final_pdm_81.torch
+  data:
+    - /media/bighdd5/simon/projects/data/datasets/facial_landmarks_from_holmes_ceclm_68_split.h5
+  training_schedule: # epochs, shape_init_epochs, hg_frequency, hg_pdm_together
+    - [2000, 1500, 200, True]
+    - [1600, 1500, 10, False]
+    #- [3000, 1500, 500, True]
+  hg_optimizer:
+    - {name : sgd, lr : 0.1}
+    #- {name : sgd, lr : 0.01}
+    - {name : adam, lr : 0.01}
+    - {name : adam, lr : 0.001}
+    - {name : rmsprop, lr : 0.01}
+  pdm_weight_optimizer:
+    - {name : sgd, lr : 0.1}
+    #- {name : sgd, lr : 0.01}
+    - {name : adam, lr : 0.01}
+    - {name : adam, lr : 0.001}
+    - {name : rmsprop, lr : 0.01}
+  pdm_shape_optimizer:
+    - {name : sgd, lr : 0.1}
+    #- {name : sgd, lr : 0.01}
+    - {name : adam, lr : 0.01}
+    - {name : adam, lr : 0.001}
+    - {name : rmsprop, lr : 0.01}
+  shuffle:
+    - True
+    #- False
+  detach_confidence:
+    - True
+    - False
+  bs:
+    - 64
+  noise_std:
+    - -1.0 # no noise
+    #- 0.00000001
+  random_seed:
+    - 0
